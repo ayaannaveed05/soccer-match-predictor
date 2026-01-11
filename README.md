@@ -60,11 +60,15 @@ Temporal Validation: Using TimeSeriesSplit prevents data leakage in time-series 
 Model Selection: Simpler models (Logistic Regression) can outperform complex ones (Random Forest) for linear relationships
 Class Imbalance: Draws are inherently difficult to predict (9% recall) due to their unpredictable nature
 
+<<<<<<< HEAD
 Data Source
 Historical match data provided by football-data.co.uk
 
 Author
 Built as part of a machine learning portfolio project demonstrating:
+=======
+```bash
+>>>>>>> 462634048a93b0bf1da2a19f4bae1836787e41a7
 
 End-to-end ML pipeline development
 Feature engineering and model selection
@@ -72,6 +76,53 @@ Web application deployment
 Data analysis and visualization
 
 
+<<<<<<< HEAD
+=======
+Create a virtual environment (optional):
+
+python -m venv venv
+\# macOS/Linux
+source venv/bin/activate
+\# Windows
+venv\\Scripts\\activate
+
+Install dependencies:
+pip install -r requirements.txt
+
+Dependencies include: pandas, requests, scikit-learn
+
+\##Usage
+Run the main script:
+python model.py
+
+Enter the following when prompted:
+Team name (e.g., Real Madrid)
+Opponent team name (e.g., Betis)
+Home or away
+
+The program outputs:
+Accuracy of the model on historical data
+Most recent head-to-head matches
+Last 5 matches for both teams
+Predicted winner and probability breakdown
+
+\##Data
+
+Data for the 2025/26 season is automatically downloaded from Football-Data.co.uk
+Older seasons are included in the data/ folder for better model training
+
+Git Ignore
+
+Make sure the .gitignore includes:
+\_\_pycache\_\_/
+\*.pyc
+data/
+venv/
+
+Notes
+The model is a Random Forest Classifier trained on team form, goals scored/conceded, and head-to-head stats.
+Predictions are only as good as historical data and recent form. Unexpected events (injuries, red cards, transfers) are not considered.
+>>>>>>> 462634048a93b0bf1da2a19f4bae1836787e41a7
 
 
 
