@@ -1,4 +1,23 @@
+# Python
 __pycache__/
+*.py[cod]
 *.pyc
-data/
+*.pyo
+*.pyd
+.Python
 venv/
+env/
+ENV/
+
+# Data
+*.db
+*.sqlite
+
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+
+# IDEs
+.vscode/
+.idea/
