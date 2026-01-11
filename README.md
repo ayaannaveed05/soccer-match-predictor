@@ -60,11 +60,11 @@ Temporal Validation: Using TimeSeriesSplit prevents data leakage in time-series 
 Model Selection: Simpler models (Logistic Regression) can outperform complex ones (Random Forest) for linear relationships
 Class Imbalance: Draws are inherently difficult to predict (9% recall) due to their unpredictable nature
 
-<<<<<<< HEAD
 Data Source
 Historical match data provided by football-data.co.uk
 
 Author
+
 Built as part of a machine learning portfolio project demonstrating:
 =======
 ```bash
