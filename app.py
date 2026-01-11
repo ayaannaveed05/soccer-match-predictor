@@ -288,6 +288,78 @@ if st.button("🔮 Predict Match", type="primary", use_container_width=True):
                 help="Goal difference in last 5 away games"
             )
         
+        # Show recent matches for both teams
+        st.markdown("### 📋 Recent Matches")
+        
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.markdown(f"#### {home_team} - Last 5 Matches")
+            home_recent = df_league[
+                (df_league['home_team'] == home_team) | 
+                (df_league['away_team'] == home_team)
+            ].sort_values('Date', ascending=False).head(5)
+            
+            if len(home_recent) > 0:
+                for _, match in home_recent.iterrows():
+                    home_score = match['home_goals']
+                    away_score = match['away_goals']
+                    
+                    # Determine if home_team won, lost, or drew
+                    if match['home_team'] == home_team:
+                        result = "🟢" if home_score > away_score else ("🔴" if home_score < away_score else "🟡")
+                        st.markdown(f"{result} **{match['home_team']}** {int(home_score)}-{int(away_score)} {match['away_team']}")
+                    else:
+                        result = "🟢" if away_score > home_score else ("🔴" if away_score < home_score else "🟡")
+                        st.markdown(f"{result} {match['home_team']} {int(home_score)}-{int(away_score)} **{match['away_team']}**")
+            else:
+                st.info("No recent matches found")
+        
+        with col2:
+            st.markdown(f"#### {away_team} - Last 5 Matches")
+            away_recent = df_league[
+                (df_league['home_team'] == away_team) | 
+                (df_league['away_team'] == away_team)
+            ].sort_values('Date', ascending=False).head(5)
+            
+            if len(away_recent) > 0:
+                for _, match in away_recent.iterrows():
+                    home_score = match['home_goals']
+                    away_score = match['away_goals']
+                    
+                    if match['home_team'] == away_team:
+                        result = "🟢" if home_score > away_score else ("🔴" if home_score < away_score else "🟡")
+                        st.markdown(f"{result} **{match['home_team']}** {int(home_score)}-{int(away_score)} {match['away_team']}")
+                    else:
+                        result = "🟢" if away_score > home_score else ("🔴" if away_score < home_score else "🟡")
+                        st.markdown(f"{result} {match['home_team']} {int(home_score)}-{int(away_score)} **{match['away_team']}**")
+            else:
+                st.info("No recent matches found")
+        
+        # Show head-to-head history
+        st.markdown("### ⚔️ Head-to-Head History")
+        h2h = df_league[
+            ((df_league['home_team'] == home_team) & (df_league['away_team'] == away_team)) |
+            ((df_league['home_team'] == away_team) & (df_league['away_team'] == home_team))
+        ].sort_values('Date', ascending=False).head(5)
+        
+        if len(h2h) > 0:
+            st.markdown(f"Last {len(h2h)} meetings:")
+            for _, match in h2h.iterrows():
+                home_score = int(match['home_goals'])
+                away_score = int(match['away_goals'])
+                date = match['Date'].strftime('%Y-%m-%d')
+                
+                # Highlight winner
+                if home_score > away_score:
+                    st.markdown(f"🏆 **{match['home_team']}** {home_score}-{away_score} {match['away_team']} *({date})*")
+                elif away_score > home_score:
+                    st.markdown(f"{match['home_team']} {home_score}-{away_score} **{match['away_team']}** 🏆 *({date})*")
+                else:
+                    st.markdown(f"{match['home_team']} {home_score}-{away_score} {match['away_team']} 🤝 *({date})*")
+        else:
+            st.info("No previous meetings found between these teams")
+        
     else:
         st.error("❌ Not enough historical data for these teams. Try different teams.")
 
