@@ -9,7 +9,7 @@ Real-time Predictions: Instant match outcome predictions with probability breakd
 Historical Data: Trained on 3 seasons of match data (1,500+ matches)
 Interactive UI: User-friendly interface built with Streamlit
 
- Live Demo
+Live Demo: https://soccer-match-predictor.streamlit.app
 
 How It Works
 The model uses 9 key features to predict match outcomes:
